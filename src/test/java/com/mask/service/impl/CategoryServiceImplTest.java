@@ -1,4 +1,4 @@
-package com.mask.repository.service.impl;
+package com.mask.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
