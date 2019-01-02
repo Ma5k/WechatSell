@@ -8,12 +8,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import lombok.Data;
-
-
 @Entity
 @DynamicUpdate
-@Data
 public class ProductCategory {
 
     /** 类目id. */
