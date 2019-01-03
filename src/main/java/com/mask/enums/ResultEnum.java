@@ -1,21 +1,16 @@
 package com.mask.enums;
 
-/**
- * 商品状态
- * @author Mask
- *
- */
-public enum ProductStatusEnum {
+public enum ResultEnum {
 	
-	UP(0,"在架"),
-	DOWN(1,"下架")
+	PRODUCT_NOT_EXIST(10, "商品不存在"),
+	PRODUCT_STOCK_ERROR(11, "商品库存不正确"),
 	;
 	
 	private Integer code;
 	
 	private String message;
 	
-	private ProductStatusEnum(Integer code, String message) {
+	ResultEnum(Integer code, String message) {
 		this.code = code;
 		this.message = message;
 	}

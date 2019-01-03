@@ -63,9 +63,9 @@ public class BuyerProductController {
 					BeanUtils.copyProperties(productInfo, productInfoVO);
 					productInfoVOList.add(productInfoVO);
 				}
-				productVO.setProductInfoVOList(productInfoVOList);
-				productVOList.add(productVO);
 			}
+			productVO.setProductInfoVOList(productInfoVOList);
+			productVOList.add(productVO);
 		}
 		
 		return ResultVOUtil.success(productVOList);
