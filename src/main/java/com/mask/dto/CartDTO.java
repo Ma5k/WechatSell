@@ -1,11 +1,14 @@
 package com.mask.dto;
 
 public class CartDTO {
-	private String productId;
 
-	private Integer productQuantity;
+    /** 商品Id. */
+    private String productId;
 
-	public CartDTO(String productId, Integer productQuantity) {
+    /** 数量. */
+    private Integer productQuantity;
+
+    public CartDTO(String productId, Integer productQuantity) {
         this.productId = productId;
         this.productQuantity = productQuantity;
     }
@@ -19,12 +22,10 @@ public class CartDTO {
 	}
 
 	public Integer getProductQuantity() {
-		return getProductQuantity();
+		return productQuantity;
 	}
 
 	public void setProductQuantity(Integer productQuantity) {
 		this.productQuantity = productQuantity;
 	}
-	
-	
 }
