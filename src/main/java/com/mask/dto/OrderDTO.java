@@ -1,10 +1,8 @@
 package com.mask.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mask.dataobject.OrderDetail;
-import com.mask.enums.OrderStatusEnum;
-import com.mask.enums.PayStatusEnum;
+import com.mask.utils.serializer.Date2LongSerializer;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -37,9 +35,11 @@ public class OrderDTO {
     private Integer payStatus;
 
     /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 更新时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

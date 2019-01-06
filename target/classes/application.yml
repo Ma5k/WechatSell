@@ -9,6 +9,9 @@ spring:
     url: jdbc:mysql://192.168.0.112/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+#  对象为空时不返回
+  jackson:
+    default-property-inclusion: non-null
     
 server:
   context-path: /sell
