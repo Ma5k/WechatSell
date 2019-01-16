@@ -29,6 +29,7 @@ import com.mask.exception.SellException;
 import com.mask.repository.OrderDetailRepository;
 import com.mask.repository.OrderMasterRepository;
 import com.mask.service.OrderService;
+import com.mask.service.PayService;
 import com.mask.service.ProductService;
 import com.mask.utils.KeyUtil;
 
@@ -46,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired 
 	private OrderMasterRepository orderMasterRepository;
+	
+	@Autowired
+    private PayService payService;
 	
 	@Override
 	@Transactional
@@ -154,6 +158,11 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.increaseStock(cartDTOList);
+
+		// 如果已支付, 需要退款
+		if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
+			payService.refund(orderDTO);
+		}
 
         return orderDTO;
 	}
