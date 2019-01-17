@@ -1,7 +1,11 @@
 package com.mask.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mask.dataobject.OrderDetail;
+import com.mask.enums.OrderStatusEnum;
+import com.mask.enums.PayStatusEnum;
+import com.mask.utils.EnumUtil;
 import com.mask.utils.serializer.Date2LongSerializer;
 
 import java.math.BigDecimal;
@@ -43,6 +47,16 @@ public class OrderDTO {
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+    
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 
 	public String getOrderId() {
 		return orderId;

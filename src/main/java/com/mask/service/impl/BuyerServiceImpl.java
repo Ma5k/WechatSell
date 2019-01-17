@@ -1,14 +1,18 @@
-package com.mask.service;
+package com.mask.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mask.dto.OrderDTO;
 import com.mask.enums.ResultEnum;
 import com.mask.exception.SellException;
+import com.mask.service.BuyerService;
+import com.mask.service.OrderService;
 import com.mask.service.impl.OrderServiceImpl;
 
+@Service
 public class BuyerServiceImpl implements BuyerService {
 
 	private static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
