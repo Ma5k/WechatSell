@@ -1,22 +1,10 @@
-package com.mask.dataobject;
+package com.mask.form;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+public class ProductForm {
 
-import org.hibernate.annotations.DynamicUpdate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mask.enums.ProductStatusEnum;
-import com.mask.utils.EnumUtil;
-
-@Entity
-@DynamicUpdate
-public class ProductInfo {
-
-    @Id
     private String productId;
 
     /** 名字. */
@@ -34,20 +22,8 @@ public class ProductInfo {
     /** 小图. */
     private String productIcon;
 
-    /** 状态, 0正常1下架. */
-    private Integer productStatus = ProductStatusEnum.UP.getCode();
-
     /** 类目编号. */
     private Integer categoryType;
-
-    private Date createTime;
-
-    private Date updateTime;
-    
-    @JsonIgnore
-    public ProductStatusEnum getProductStatusEnum() {
-        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
-    }
 
 	public String getProductId() {
 		return productId;
@@ -97,14 +73,6 @@ public class ProductInfo {
 		this.productIcon = productIcon;
 	}
 
-	public Integer getProductStatus() {
-		return productStatus;
-	}
-
-	public void setProductStatus(Integer productStatus) {
-		this.productStatus = productStatus;
-	}
-
 	public Integer getCategoryType() {
 		return categoryType;
 	}
@@ -112,21 +80,4 @@ public class ProductInfo {
 	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
 	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
 }

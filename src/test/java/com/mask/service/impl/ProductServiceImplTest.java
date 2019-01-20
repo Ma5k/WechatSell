@@ -14,30 +14,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mask.dataobject.ProductInfo;
 import com.mask.enums.ProductStatusEnum;
+import com.mask.service.ProductService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductServiceImplTest {
 	
 	@Autowired 
-	private ProductServiceImpl productServiceImpl;
+	private ProductService productService;
 	
 	@Test
 	public void findOneTest() throws Exception {
-		ProductInfo productInfo = productServiceImpl.findOne("123456");
+		ProductInfo productInfo = productService.findOne("123456");
 		Assert.assertEquals("123456", productInfo.getProductId());
 	}
 	
 	@Test
 	public void findUpAllTest() throws Exception {
-		List<ProductInfo> productInfoList = productServiceImpl.findUpAll();
+		List<ProductInfo> productInfoList = productService.findUpAll();
 		Assert.assertNotEquals(0, productInfoList.size());
 	}
 	
 	@Test
 	public void findAllTest() throws Exception {
 		PageRequest request = new PageRequest(0, 2);
-		Page<ProductInfo> productInfoPage = productServiceImpl.findAll(request);
+		Page<ProductInfo> productInfoPage = productService.findAll(request);
 		System.out.println(productInfoPage.getTotalElements());
 	}
 	
@@ -52,8 +53,14 @@ public class ProductServiceImplTest {
 		productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
 		productInfo.setCategoryType(2);
 		
-		ProductInfo result = productServiceImpl.save(productInfo);
+		ProductInfo result = productService.save(productInfo);
 		Assert.assertNotNull(result);
+	}
+	
+	@Test
+	public void onSale() {
+		ProductInfo result = productService.onSale("111");
+		Assert.assertEquals(ProductStatusEnum.UP,  result.getProductStatusEnum());
 	}
 	
 }
