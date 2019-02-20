@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.MatchableHandlerMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +23,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 卖家用户
- * Created by 廖师兄
- * 2017-07-30 15:28
- */
 @Controller
 @RequestMapping("/seller")
 public class SellerUserController {
@@ -66,5 +62,23 @@ public class SellerUserController {
 
     }
 
-    
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request,
+    					HttpServletResponse response,
+    					Map<String, Object> map) {
+    	//1、从cookie里查询
+    	Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
+    	if (cookie != null) {
+    		
+    		//2、清除redis
+    		redisTemplate.opsForValue().getOperations().delete(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
+    		
+    		//3、清除cookie
+    		CookieUtil.set(response, CookieConstant.TOKEN, null, 0);
+    	}
+    	
+    	map.put("msg", ResultEnum.LOGOUT_SUCCESS.getMessage());
+    	map.put("url", "/sell/seller/order/list");
+    	return new ModelAndView("common/success", map);
+    }
 }
