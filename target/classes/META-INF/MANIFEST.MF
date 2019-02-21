@@ -3,7 +3,7 @@ Implementation-Title: sell
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Mask
 Implementation-Vendor-Id: com.mask
-Build-Jdk: 1.8.0_201
+Build-Jdk: 1.8.0_60
 Implementation-URL: http://projects.spring.io/spring-boot/sell/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

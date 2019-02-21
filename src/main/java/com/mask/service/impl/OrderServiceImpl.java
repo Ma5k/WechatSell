@@ -31,6 +31,8 @@ import com.mask.repository.OrderMasterRepository;
 import com.mask.service.OrderService;
 import com.mask.service.PayService;
 import com.mask.service.ProductService;
+import com.mask.service.PushMessageService;
+import com.mask.service.WebSocket;
 import com.mask.utils.KeyUtil;
 
 
@@ -50,6 +52,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
     private PayService payService;
+	
+	@Autowired
+	private PushMessageService pushMessageService;
+	
+	@Autowired
+	private WebSocket websocket;
 	
 	@Override
 	@Transactional
@@ -98,6 +106,9 @@ public class OrderServiceImpl implements OrderService {
         ).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
 
+        //发送websocket消息
+        websocket.sendMessage(orderDTO.getOrderId());
+        
         return orderDTO;
     }
 
@@ -185,6 +196,9 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】更新失败, orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+        
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
 	}
