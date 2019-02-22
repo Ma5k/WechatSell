@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mask.dataobject.ProductCategory;
+import com.mask.dataobject.dao.ProductCategoryDao;
 import com.mask.repository.ProductCategoryRepository;
 import com.mask.service.CategoryService;
 
@@ -14,6 +15,10 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	private ProductCategoryRepository repository;
+	
+	//使用mybatis时注入dao
+	@Autowired
+	private ProductCategoryDao dao;
 	
 	@Override
 	public ProductCategory findOne(Integer categoryId) {

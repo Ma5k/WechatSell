@@ -37,3 +37,10 @@ projectUrl:
   wechatOpenAuthorize: http://sell.natapp4.cc
   sell: http://sell.natapp4.cc
   
+logging:
+  level:
+    com.mask.dataobject.mapper: trace
+
+#使用mybatis时要在此配置xml文件路径    
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
