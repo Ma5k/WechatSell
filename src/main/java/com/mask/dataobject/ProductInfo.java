@@ -1,5 +1,6 @@
 package com.mask.dataobject;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,7 +15,9 @@ import com.mask.utils.EnumUtil;
 
 @Entity
 @DynamicUpdate
-public class ProductInfo {
+public class ProductInfo implements Serializable{
+	
+	private static final long serialVersionUID = 3068837167949875883L;
 
     @Id
     private String productId;

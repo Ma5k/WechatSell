@@ -1,5 +1,6 @@
 package com.mask.VO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Mask
  *
  */
-public class ProductVO {
+public class ProductVO implements Serializable{
+	
+	private static final long serialVersionUID = 3068837394749875883L;
 	
 	@JsonProperty("name")
 	private String categoryName;
